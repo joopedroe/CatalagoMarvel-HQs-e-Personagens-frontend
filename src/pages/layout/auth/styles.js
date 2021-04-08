@@ -26,6 +26,12 @@ export const Content = styled.div`
             color: #fff;
             margin: 0 0 10px;
         }
+        span {
+            color: red;
+            align-self: flex-start;
+            margin: 0 0 10px;
+            font: sans-serif;
+        }
         button {
             margin: 5px 0 0;
             height: 44px;

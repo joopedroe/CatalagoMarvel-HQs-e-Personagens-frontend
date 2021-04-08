@@ -21,4 +21,7 @@ export default createGlobalStyle`
     button{
         cursor:pointer;
     }
+    a{
+        font:'Roboto', sans-serif
+    }
 `;
