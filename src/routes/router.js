@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
-
+import { logged } from '../services/logged';
 import authLayout from '../pages/layout/auth';
 import defaultLayout from '../pages/layout/default';
 
@@ -11,7 +11,7 @@ export default function RouterWrapper({
     isPrivate,
     ...rest
 }) {
-    const signed = false;
+    const signed = logged();
 
     if (!signed && isPrivate) {
         return <Redirect to="/" />;
