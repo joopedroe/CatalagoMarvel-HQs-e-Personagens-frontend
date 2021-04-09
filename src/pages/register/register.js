@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 
+// Função responsável por cadastrar um novo usuario
 function register({ history }) {
     async function formSubmit(data) {
         // eslint-disable-next-line no-unused-vars
@@ -31,6 +32,7 @@ function register({ history }) {
             history.push('/');
         }
     }
+    // schema responsavel pelas validações do formulário
     const schema = Yup.object().shape({
         name: Yup.string().required('Required field'),
         username: Yup.string().required('Required field'),
