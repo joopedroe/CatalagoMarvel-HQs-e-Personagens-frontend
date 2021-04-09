@@ -15,10 +15,12 @@ function navbar() {
                     </Link>
                     <Profiler>
                         <div>
-                            <button type="button">
-                                {' '}
-                                <FaUserAlt /> Meu perfil
-                            </button>
+                            <Link to="/profile">
+                                <button type="button">
+                                    {' '}
+                                    <FaUserAlt /> My profile
+                                </button>
+                            </Link>
                         </div>
                     </Profiler>
                 </nav>
