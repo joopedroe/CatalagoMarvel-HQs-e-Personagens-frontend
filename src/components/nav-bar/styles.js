@@ -22,6 +22,11 @@ export const Content = styled.div`
             width: 60px;
         }
     }
+    > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     aside {
         button {
             margin: 5px 0 0;
@@ -46,7 +51,7 @@ export const Profiler = styled.div`
     display: flex;
     margin-left: 20px;
     padding-left: 20px;
-    border-left: 1px solid #eee;
+
     div {
         button {
             margin: 5px 0 0;
@@ -75,4 +80,9 @@ export const Profiler = styled.div`
             font-weight: bold;
         }
     }
+`;
+export const Div = styled.div`
+    border-left: 1px solid #eee;
+    padding-left: 15px;
+    margin-left: 15px;
 `;

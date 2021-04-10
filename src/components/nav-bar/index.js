@@ -2,8 +2,8 @@ import React from 'react';
 import { FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-marvel.png';
-
-import { Container, Content, Profiler } from './styles';
+import Select from '../select/index';
+import { Container, Content, Profiler, Div } from './styles';
 
 function navbar() {
     return (
@@ -13,6 +13,11 @@ function navbar() {
                     <Link to="/main">
                         <img src={logo} alt="marvel" />
                     </Link>
+                    <Div>
+                        <Select />
+                    </Div>
+                </nav>
+                <div>
                     <Profiler>
                         <div>
                             <Link to="/profile">
@@ -23,15 +28,15 @@ function navbar() {
                             </Link>
                         </div>
                     </Profiler>
-                </nav>
-                <aside>
-                    <div>
-                        <button type="button">
-                            {' '}
-                            <FaSignOutAlt /> Logout
-                        </button>
-                    </div>
-                </aside>
+                    <aside>
+                        <div>
+                            <button type="button">
+                                {' '}
+                                <FaSignOutAlt /> Logout
+                            </button>
+                        </div>
+                    </aside>
+                </div>
             </Content>
         </Container>
     );
