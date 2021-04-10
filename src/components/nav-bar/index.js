@@ -1,8 +1,8 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import { FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-marvel.png';
-import Select from '../select/index';
 import { Container, Content, Profiler, Div } from './styles';
 
 function navbar() {
@@ -14,7 +14,12 @@ function navbar() {
                         <img src={logo} alt="marvel" />
                     </Link>
                     <Div>
-                        <Select />
+                        <Link to="/main">
+                            <button type="button">Character</button>
+                        </Link>
+                        <Link to="/comics">
+                            <button type="button">Comics</button>
+                        </Link>
                     </Div>
                 </nav>
                 <div>

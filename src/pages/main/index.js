@@ -1,6 +1,8 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
-import { Container, Item } from './styles';
+import { Form, Input } from '@rocketseat/unform';
+import { FaSearch } from 'react-icons/fa';
+import { Container, Item, Header, ContentHeader } from './styles';
 import apiMarvel from '../../services/apiMarvel';
 
 function Main() {
@@ -25,8 +27,40 @@ function Main() {
         character();
     }, []);
 
+    async function formSubmit(data) {
+        const response = await apiMarvel
+            .get(
+                `/characters?nameStartsWith=${data.input}&apikey=${keyPrivate}`
+            )
+            // eslint-disable-next-line no-unused-vars
+            .catch((error) => {
+                setLoadin(false);
+            });
+        if (response === undefined) {
+            setLoadin(false);
+        } else {
+            console.log(loadin);
+            console.log(response.data.data.results);
+            setCharacters(response.data.data.results);
+        }
+    }
+
     return (
         <Container>
+            <Header>
+                <ContentHeader>
+                    <Form onSubmit={formSubmit}>
+                        <Input
+                            name="input"
+                            type="text"
+                            placeholder="Seach..."
+                        />
+                        <button type="submit">
+                            <FaSearch />
+                        </button>
+                    </Form>
+                </ContentHeader>
+            </Header>
             <ul>
                 {characters.map((character) => (
                     <Item key={character.id}>

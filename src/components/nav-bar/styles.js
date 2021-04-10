@@ -22,10 +22,28 @@ export const Content = styled.div`
             width: 60px;
         }
     }
-    > div {
+    div {
         display: flex;
         justify-content: center;
         align-items: center;
+        button {
+            margin-right: 10px;
+            margin-left: 10px;
+            margin: 5px 0 0;
+            height: 44px;
+            width: 150px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            font-weight: bold;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background 0.2s;
+            &:hover {
+                background: ${darken(0.05, '#b30000')};
+            }
+        }
     }
     aside {
         button {
@@ -53,7 +71,7 @@ export const Profiler = styled.div`
     padding-left: 20px;
 
     div {
-        button {
+        > button {
             margin: 5px 0 0;
             height: 44px;
             width: 150px;

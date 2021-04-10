@@ -1,6 +1,8 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import chroma from 'chroma-js';
+import { Redirect } from 'react-router-dom';
 
 import Select from 'react-select';
 
@@ -60,7 +62,10 @@ const colourStyles = {
     placeholder: (styles) => ({ ...styles, ...dot('#f2f2f2') }),
     singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
-
+// eslint-disable-next-line no-unused-vars
+function change(event) {
+    return <Redirect to="/comics" />;
+}
 export default () => (
     <Select
         label="Single select"
