@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { Container, Item, Header, ContentHeader } from './styles';
 import apiMarvel from '../../services/apiMarvel';
 
@@ -64,12 +65,14 @@ function Main() {
             <ul>
                 {characters.map((character) => (
                     <Item key={character.id}>
-                        <img
-                            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                            alt="marvel"
-                        />
-                        <strong>{character.name}</strong>
-                        <span>{character.description}</span>
+                        <Link to={`/details/${character.id}`}>
+                            <img
+                                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                                alt="marvel"
+                            />
+                            <strong>{character.name}</strong>
+                            <span>{character.description}</span>
+                        </Link>
                     </Item>
                 ))}
             </ul>
