@@ -45,7 +45,7 @@ function profileUpdate({ history }) {
         confirmPassword: Yup.string().required('Required field'),
     });
     return (
-        <>
+        <div>
             <Container>
                 <Form schema={schema} onSubmit={formSubmit}>
                     <Input name="name" type="text" placeholder="Name" />
@@ -67,7 +67,7 @@ function profileUpdate({ history }) {
                     <button type="button">Back</button>
                 </Link>
             </Container>
-        </>
+        </div>
     );
 }
 

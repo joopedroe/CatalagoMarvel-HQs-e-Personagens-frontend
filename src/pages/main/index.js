@@ -1,48 +1,43 @@
-import React, { useState } from 'react';
+/* eslint-disable no-shadow */
+import React, { useEffect, useState } from 'react';
 import { Container, Item } from './styles';
-import logo from '../../assets/logo-marvel.png';
 import apiMarvel from '../../services/apiMarvel';
 
 function Main() {
+    const [loadin, setLoadin] = useState(true);
+    const [characters, setCharacters] = useState([]);
+    const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
+    useEffect(() => {
+        async function character() {
+            const response = await apiMarvel
+                .get(`/characters?apikey=${keyPrivate}`)
+                // eslint-disable-next-line no-unused-vars
+                .catch((error) => {
+                    setLoadin(false);
+                });
+            if (response === undefined) {
+                setLoadin(false);
+            } else {
+                console.log(loadin);
+                setCharacters(response.data.data.results);
+            }
+        }
+        character();
+    }, []);
+
     return (
         <Container>
-            <header>
-                <button type="button">Comincs</button>
-                <button onClick={character} type="button">
-                    Character
-                </button>
-            </header>
             <ul>
-                <Item>
-                    <img src={logo} alt="marvel" />
-                    <strong>titulo</strong>
-                    <span>descrição</span>
-                </Item>
-                <Item>
-                    <img src={logo} alt="marvel" />
-                    <strong>titulo</strong>
-                    <span>descrição</span>
-                </Item>
-                <Item>
-                    <img src={logo} alt="marvel" />
-                    <strong>titulo</strong>
-                    <span>descrição</span>
-                </Item>
-                <Item>
-                    <img src={logo} alt="marvel" />
-                    <strong>titulo</strong>
-                    <span>descrição</span>
-                </Item>
-                <Item>
-                    <img src={logo} alt="marvel" />
-                    <strong>titulo</strong>
-                    <span>descrição</span>
-                </Item>
-                <Item>
-                    <img src={logo} alt="marvel" />
-                    <strong>titulo</strong>
-                    <span>descrição</span>
-                </Item>
+                {characters.map((character) => (
+                    <Item key={character.id}>
+                        <img
+                            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                            alt="marvel"
+                        />
+                        <strong>{character.name}</strong>
+                        <span>{character.description}</span>
+                    </Item>
+                ))}
             </ul>
             <div>
                 <button type="button">More</button>

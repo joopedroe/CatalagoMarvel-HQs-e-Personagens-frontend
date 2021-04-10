@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
-    max-width: 90%;
+    max-width: 80%;
     color: #7159c1;
     display: flex;
     margin: 50px auto;
@@ -33,6 +33,10 @@ export const Container = styled.div`
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 15px;
         margin-top: 30px;
+        img {
+            width: 165px;
+            height: 200px;
+        }
     }
     div {
         display: flex;
@@ -49,12 +53,12 @@ export const Item = styled.li`
     padding: 20px;
     border-radius: 4px;
     background: #fff;
-
+    height: 350px;
     strong {
         display: block;
         color: #333;
         font-size: 15px;
-        font-weight: normal;
+        font-weight: bold;
     }
 
     span {
