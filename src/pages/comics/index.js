@@ -24,6 +24,7 @@ function comics() {
                 setLoadin(false);
             } else {
                 setLoadin(true);
+                // eslint-disable-next-line no-console
                 console.log(response.data.data.results);
                 setComics(response.data.data.results);
             }
