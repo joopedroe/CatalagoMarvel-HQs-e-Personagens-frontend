@@ -7,7 +7,7 @@ import { Container, Item, Header, ContentHeader } from './styles';
 import apiMarvel from '../../services/apiMarvel';
 
 function Main() {
-    const [loadin, setLoadin] = useState(true);
+    const [loadin, setLoadin] = useState(false);
     const [characters, setCharacters] = useState([]);
     const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
     useEffect(() => {
@@ -40,6 +40,7 @@ function Main() {
         if (response === undefined) {
             setLoadin(false);
         } else {
+            setLoadin(true);
             console.log(loadin);
             console.log(response.data.data.results);
             setCharacters(response.data.data.results);

@@ -54,11 +54,31 @@ export const Item = styled.li`
     border-radius: 4px;
     background: #fff;
     height: 350px;
+    display: flex;
+    flex-direction: column;
     strong {
         display: block;
         color: #333;
         font-size: 15px;
         font-weight: bold;
+    }
+    > div {
+        align-self: stretch;
+
+        button {
+            height: 35px;
+            width: 60px;
+            background: red;
+            font-weight: bold;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: background 0.2s;
+            &:hover {
+                background: ${darken(0.05, 'red')};
+            }
+        }
     }
 
     span {
@@ -76,6 +96,9 @@ export const Item = styled.li`
 export const Header = styled.div`
     padding: 0 5px;
 `;
+export const HeaderItem = styled.div`
+    height: 410px;
+`;
 
 export const ContentHeader = styled.div`
     height: auto;
@@ -84,41 +107,7 @@ export const ContentHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    form {
-        display: flex;
-        max-width: 400px;
-        margin-top: 30px;
-
-        input {
-            background: rgba(0, 0, 0, 0.1);
-            border: 0;
-            border-radius: 4px;
-            height: 44px;
-            width: 300px;
-            padding: 0 15px;
-            color: #fff;
-            margin: 0 0 10px;
-        }
-        span {
-            color: red;
-            align-self: flex-start;
-            margin: 0 0 10px;
-            font: sans-serif;
-        }
-        button {
-            margin: 0 5px 0;
-            height: 44px;
-            width: 50px;
-            background: #0059b3;
-            font-weight: bold;
-            color: #fff;
-            border: 0;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: background 0.2s;
-            &:hover {
-                background: ${darken(0.05, '#0059b3')};
-            }
-        }
+    H1 {
+        color: #e6e6e6;
     }
 `;
