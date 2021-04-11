@@ -100,7 +100,7 @@ function comics() {
             <ul>
                 {comics.map((comic) => (
                     <Item key={comic.id}>
-                        <Link to={`/details/${comic.id}`}>
+                        <Link to={`/comic/details/${comic.id}`}>
                             <img
                                 src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                                 alt="marvel"

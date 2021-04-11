@@ -15,25 +15,25 @@ import Loadin from '../../components/loadin/index';
 
 // import { Container } from './styles';
 
-function characterDetails(props) {
+function comicDetails(props) {
     const [loadin, setLoadin] = useState(false);
-    const [character, setCharacters] = useState([]);
-    const [comics, setComics] = useState([]);
+    const [characters, setCharacters] = useState([]);
+    const [comic, setComics] = useState([]);
     const [path, setPath] = useState('');
     const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
 
     useEffect(() => {
         // Função que carrega os dados da pagina de detalhes do character
-        async function characterDetail() {
+        async function comicDetail() {
             const response = await apiMarvel
                 .get(`/comics/${props.match.params.id}?apikey=${keyPrivate}`)
                 // eslint-disable-next-line no-unused-vars
                 .catch((error) => {
                     setLoadin(false);
                 });
-            const responseComics = await apiMarvel
+            const responseCharacter = await apiMarvel
                 .get(
-                    `/characters/${props.match.params.id}/comics?apikey=${keyPrivate}`
+                    `/comics/${props.match.params.id}/characters?apikey=${keyPrivate}`
                 )
                 // eslint-disable-next-line no-unused-vars
                 .catch((error) => {
@@ -43,39 +43,41 @@ function characterDetails(props) {
                 setLoadin(false);
             } else {
                 setLoadin(true);
+                console.log(responseCharacter);
                 setPath(response.data.data.results[0].thumbnail.path);
-                setComics(responseComics.data.data.results);
-                setCharacters(response.data.data.results[0]);
+                setCharacters(responseCharacter.data.data.results);
+                setComics(response.data.data.results[0]);
             }
         }
-        characterDetail();
+        comicDetail();
     }, []);
-    // Função responsavel por favoritar um character
+    // Função responsavel por favoritar uma comic
     async function favorites() {
         // eslint-disable-next-line camelcase
         const id_user = localStorage.getItem('user_id');
-        const { id } = character;
-        const { name } = character;
-        const { description } = character;
+        const { id } = comic;
+        const { title } = comic;
+        const { description } = comic;
         // eslint-disable-next-line no-shadow
-        const { path } = character.thumbnail;
+        const { path } = comic.thumbnail;
         const data = {
             id,
-            name,
+            title,
             description,
             imageURL: path,
             type_image: 'jpg',
             id_user,
         };
         const response = await api
-            .post('/character/adicionar', data)
+            .post('/comic/adicionar', data)
+            // eslint-disable-next-line no-unused-vars
             .catch((error) => {
                 setLoadin(true);
             });
         if (response.status !== 200) {
-            toast.warn('Character not add!');
+            toast.warn('Comic not add!');
         } else {
-            toast.success('Successful character addition!');
+            toast.success('Successful comic addition!');
         }
     }
     if (!loadin) {
@@ -85,13 +87,13 @@ function characterDetails(props) {
     return (
         <Container>
             <Header>
-                <h1>CHARACTER DETAILS</h1>
+                <h1>COMIC DETAILS</h1>
             </Header>
             <ContentHeader>
                 <img src={`${path}.jpg`} alt="marvelComics" />
                 <div>
-                    <h1>{character.name}</h1>
-                    <h4>Details: {character.description}</h4>
+                    <h1>{comic.title}</h1>
+                    <h4>Details: {comic.description}</h4>
                 </div>
                 <Button>
                     <button type="button" onClick={() => favorites()}>
@@ -101,14 +103,14 @@ function characterDetails(props) {
             </ContentHeader>
 
             <ul>
-                {comics.map((comic) => (
-                    <Item key={comic.id}>
-                        <Link to={`/comics/details/${comic.id}`}>
+                {characters.map((character) => (
+                    <Item key={character.id}>
+                        <Link to={`/character/details/${character.id}`}>
                             <img
-                                src={`${comic.thumbnail.path}.jpg`}
+                                src={`${character.thumbnail.path}.jpg`}
                                 alt="marvelComics"
                             />
-                            <strong>{comic.title}</strong>
+                            <strong>{character.name}</strong>
                         </Link>
                     </Item>
                 ))}
@@ -120,4 +122,4 @@ function characterDetails(props) {
     );
 }
 
-export default characterDetails;
+export default comicDetails;
