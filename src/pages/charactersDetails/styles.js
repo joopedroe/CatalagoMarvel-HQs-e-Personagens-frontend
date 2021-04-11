@@ -83,6 +83,7 @@ export const Button = styled.div`
     max-width: 100px;
     margin-left: 30px;
     display: flex;
+
     > button {
         margin: 0 5px 0;
         height: 44px;

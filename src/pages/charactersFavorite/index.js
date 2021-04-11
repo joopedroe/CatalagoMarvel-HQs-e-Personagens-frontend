@@ -43,6 +43,7 @@ function favoritesCharacters() {
                     authorization: `Bearer ${token}`,
                 },
             })
+
             // eslint-disable-next-line no-unused-vars
             .catch((error) => {
                 setLoadin(false);
