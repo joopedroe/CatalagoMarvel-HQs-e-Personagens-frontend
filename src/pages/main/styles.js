@@ -87,7 +87,7 @@ export const ContentHeader = styled.div`
     form {
         display: flex;
         max-width: 400px;
-        margin-top: 30px;
+        margin-top: 10px;
 
         input {
             background: rgba(0, 0, 0, 0.1);
@@ -95,7 +95,7 @@ export const ContentHeader = styled.div`
             border-radius: 4px;
             height: 44px;
             width: 300px;
-            padding: 0 15px;
+            padding: 0 5px;
             color: #fff;
             margin: 0 0 10px;
         }
@@ -118,6 +118,44 @@ export const ContentHeader = styled.div`
             transition: background 0.2s;
             &:hover {
                 background: ${darken(0.05, '#0059b3')};
+            }
+        }
+    }
+    h1 {
+        font-size: 30px;
+        color: #fff;
+    }
+    > button {
+        margin: 0px 0 0;
+        height: 44px;
+        width: 20px;
+        background: yellow;
+        font-weight: bold;
+        color: #fff;
+        border: 0;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background 0.2s;
+        &:hover {
+            background: ${darken(0.15, 'yellow')};
+        }
+    }
+    div {
+        margin-left: 50px;
+
+        button {
+            margin: 0px 0 0;
+            height: 44px;
+            width: 80px;
+            background: red;
+            font-weight: bold;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background 0.2s;
+            &:hover {
+                background: ${darken(0.15, 'red')};
             }
         }
     }

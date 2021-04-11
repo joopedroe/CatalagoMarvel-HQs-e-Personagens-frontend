@@ -4,9 +4,10 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Container, Header, Item, ContentHeader, HeaderItem } from './styles';
 import api from '../../services/api';
+import Loadin from '../../components/loadin/index';
 
 function favoritesCharacters() {
-    const [loadin, setLoadin] = useState(true);
+    const [loadin, setLoadin] = useState(false);
     const [characters, setCharacters] = useState([]);
     const iduser = localStorage.getItem('user_id');
     useEffect(() => {
@@ -21,10 +22,8 @@ function favoritesCharacters() {
             if (response === undefined) {
                 setLoadin(false);
             } else {
-                console.log(loadin);
-                console.log(characters);
                 setCharacters(response.data);
-                console.log(response);
+                setLoadin(true);
             }
         }
         listFavorites();
@@ -48,6 +47,10 @@ function favoritesCharacters() {
             setCharacters(responseCharcter.data);
         }
     }
+    if (!loadin) {
+        return <Loadin />;
+    }
+
     return (
         <Container>
             <Header>

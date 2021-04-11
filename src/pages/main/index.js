@@ -1,16 +1,18 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { Form, Input } from '@rocketseat/unform';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaTimes, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Container, Item, Header, ContentHeader } from './styles';
 import apiMarvel from '../../services/apiMarvel';
+import Loadin from '../../components/loadin/index';
 
 function Main() {
     const [loadin, setLoadin] = useState(false);
     const [characters, setCharacters] = useState([]);
     const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
     useEffect(() => {
+        // Função que carrega os dados dos characters
         async function character() {
             const response = await apiMarvel
                 .get(`/characters?apikey=${keyPrivate}`)
@@ -21,13 +23,28 @@ function Main() {
             if (response === undefined) {
                 setLoadin(false);
             } else {
-                console.log(loadin);
+                setLoadin(true);
                 setCharacters(response.data.data.results);
             }
         }
         character();
     }, []);
 
+    async function character() {
+        const response = await apiMarvel
+            .get(`/characters?apikey=${keyPrivate}`)
+            // eslint-disable-next-line no-unused-vars
+            .catch((error) => {
+                setLoadin(false);
+            });
+        if (response === undefined) {
+            setLoadin(false);
+        } else {
+            setLoadin(true);
+            setCharacters(response.data.data.results);
+        }
+    }
+    // Função que busca os dados dos characters apartir de entrada do usuário
     async function formSubmit(data) {
         const response = await apiMarvel
             .get(
@@ -41,14 +58,20 @@ function Main() {
             setLoadin(false);
         } else {
             setLoadin(true);
-            console.log(loadin);
-            console.log(response.data.data.results);
             setCharacters(response.data.data.results);
         }
+    }
+    if (!loadin) {
+        return <Loadin />;
     }
 
     return (
         <Container>
+            <Header>
+                <ContentHeader>
+                    <h1>CHARACTERS</h1>
+                </ContentHeader>
+            </Header>
             <Header>
                 <ContentHeader>
                     <Form onSubmit={formSubmit}>
@@ -61,9 +84,18 @@ function Main() {
                             <FaSearch />
                         </button>
                     </Form>
-                    <Link to="/main/favorites">
-                        <button type="button"> Favorites</button>
-                    </Link>
+                    <button type="button" onClick={() => character()}>
+                        <FaTimes />
+                    </button>
+                    <div>
+                        <Link to="/main/favorites">
+                            <button type="button">
+                                {' '}
+                                <FaRegHeart />
+                                Favorites
+                            </button>
+                        </Link>
+                    </div>
                 </ContentHeader>
             </Header>
             <ul>

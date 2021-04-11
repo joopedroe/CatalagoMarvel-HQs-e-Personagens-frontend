@@ -6,11 +6,12 @@ import { toast } from 'react-toastify';
 import apiMarvel from '../../services/apiMarvel';
 import { Container, Item, Header, ContentHeader, Button } from './styles';
 import api from '../../services/api';
+import Loadin from '../../components/loadin/index';
 
 // import { Container } from './styles';
 
 function characterDetails(props) {
-    const [loadin, setLoadin] = useState(true);
+    const [loadin, setLoadin] = useState(false);
     const [character, setCharacters] = useState([]);
     const [comics, setComics] = useState([]);
     const [path, setPath] = useState('');
@@ -38,6 +39,7 @@ function characterDetails(props) {
             if (response === undefined) {
                 setLoadin(false);
             } else {
+                setLoadin(true);
                 setPath(response.data.data.results[0].thumbnail.path);
                 setComics(responseComics.data.data.results);
                 setCharacters(response.data.data.results[0]);
@@ -45,7 +47,7 @@ function characterDetails(props) {
         }
         characterDetail();
     }, []);
-
+    // Função responsavel por favoritar um character
     async function favorites() {
         // eslint-disable-next-line camelcase
         const id_user = localStorage.getItem('user_id');
@@ -65,15 +67,18 @@ function characterDetails(props) {
         const response = await api
             .post('/character/adicionar', data)
             .catch((error) => {
-                setLoadin(false);
+                setLoadin(true);
             });
-        console.log(response);
         if (response.status !== 200) {
             toast.warn('Character not add!');
         } else {
             toast.success('Successful character addition!');
         }
     }
+    if (!loadin) {
+        return <Loadin />;
+    }
+
     return (
         <Container>
             <Header>
