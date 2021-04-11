@@ -6,10 +6,19 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    height: 64px;
+    height: 100px;
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    color: #fff;
+    justify-content: center;
     align-items: center;
+    text {
+        color: #fff;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `;

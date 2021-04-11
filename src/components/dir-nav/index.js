@@ -1,16 +1,17 @@
 import React from 'react';
-import Select from '../index';
 
 import { Container, Content } from './styles';
 
-function header() {
+function dirbar() {
     return (
         <Container>
             <Content>
-                <Select />
+                <a href="http://marvel.com">
+                    <text>Data provided by Marvel. © 2021 MARVEL</text>
+                </a>
             </Content>
         </Container>
     );
 }
 
-export default header;
+export default dirbar;
