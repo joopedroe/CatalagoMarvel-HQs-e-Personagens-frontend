@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { FaRegBookmark } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import apiMarvel from '../../services/apiMarvel';
-import { Container, Item, Header, ContentHeader } from './styles';
+import { Container, Item, Header, ContentHeader, Button } from './styles';
 
 // import { Container } from './styles';
 
@@ -34,7 +35,7 @@ function characterDetails(props) {
                 setLoadin(false);
             } else {
                 console.log(loadin);
-                console.log(responseComics);
+                console.log(response);
                 setPath(response.data.data.results[0].thumbnail.path);
                 setComics(responseComics.data.data.results);
                 setCharacters(response.data.data.results[0]);
@@ -46,12 +47,21 @@ function characterDetails(props) {
     return (
         <Container>
             <Header>
-                <ContentHeader>
-                    <h1>Character Details</h1>
-                </ContentHeader>
-                <h1>{character.name}</h1>
+                <h1>CHARACTER DETAILS</h1>
             </Header>
-            <img src={`${path}.jpg`} alt="marvelComics" />
+            <ContentHeader>
+                <img src={`${path}.jpg`} alt="marvelComics" />
+                <div>
+                    <h1>{character.name}</h1>
+                    <h5>Details: {character.description}</h5>
+                </div>
+                <Button>
+                    <button type="button">
+                        <FaRegBookmark />
+                    </button>
+                </Button>
+            </ContentHeader>
+
             <ul>
                 {comics.map((comic) => (
                     <Item key={comic.id}>

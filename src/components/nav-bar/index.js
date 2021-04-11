@@ -15,10 +15,10 @@ function navbar() {
                     </Link>
                     <Div>
                         <Link to="/main">
-                            <button type="button">Character</button>
+                            <button type="button">CHARACTERS</button>
                         </Link>
                         <Link to="/comics">
-                            <button type="button">Comics</button>
+                            <button type="button">COMICS</button>
                         </Link>
                     </Div>
                 </nav>
@@ -37,7 +37,7 @@ function navbar() {
                         <div>
                             <button type="button">
                                 {' '}
-                                <FaSignOutAlt /> Logout
+                                <FaSignOutAlt /> LOGOUT
                             </button>
                         </div>
                     </aside>

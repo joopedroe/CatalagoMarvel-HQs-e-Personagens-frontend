@@ -3,7 +3,6 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
     max-width: 80%;
-    color: #7159c1;
     display: flex;
     margin: 0px auto;
     flex-direction: column;
@@ -43,7 +42,7 @@ export const Container = styled.div`
         align-self: center;
         align-items: center;
         padding: 15px;
-        button {
+        > button {
             border: 0;
             background: none;
         }
@@ -75,15 +74,55 @@ export const Item = styled.li`
 
 export const Header = styled.div`
     padding: 0 5px;
+    H1 {
+        color: #e6e6e6;
+    }
+`;
+export const Button = styled.div`
+    height: 300px;
+    max-width: 100px;
+    margin-left: 30px;
+    display: flex;
+    > button {
+        margin: 0 5px 0;
+        height: 44px;
+        width: 100px;
+        background: #b30000;
+        font-weight: bold;
+        color: #fff;
+        border: 0;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background 0.2s;
+        &:hover {
+            background: ${darken(0.05, '#b30000')};
+        }
+    }
 `;
 
 export const ContentHeader = styled.div`
-    height: auto;
-    max-width: auto;
-    margin: 0 auto;
+    padding: 20px;
+    border-radius: 4px;
+    background: #d9d9d9;
+    height: 350px;
+    max-width: 100%;
+    width: 1080px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    img {
+        height: 300px;
+        width: 200;
+        border-radius: 4px;
+    }
+    > div {
+        height: 300px;
+        width: 600px;
+        margin-left: 30px;
+        h4 {
+            margin-top: 5px;
+        }
+    }
     form {
         display: flex;
         max-width: 400px;
