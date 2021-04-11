@@ -7,7 +7,7 @@ function dirbar() {
         <Container>
             <Content>
                 <a href="http://marvel.com">
-                    <text>Data provided by Marvel. © 2021 MARVEL</text>
+                    <p>Data provided by Marvel. © 2021 MARVEL</p>
                 </a>
             </Content>
         </Container>

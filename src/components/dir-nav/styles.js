@@ -13,7 +13,7 @@ export const Content = styled.div`
     color: #fff;
     justify-content: center;
     align-items: center;
-    text {
+    p {
         color: #fff;
     }
     div {

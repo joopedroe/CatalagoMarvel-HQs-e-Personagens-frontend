@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { FaRegBookmark } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import apiMarvel from '../../services/apiMarvel';
 import { Container, Item, Header, ContentHeader, Button } from './styles';
+import api from '../../services/api';
 
 // import { Container } from './styles';
 
@@ -11,9 +14,10 @@ function characterDetails(props) {
     const [character, setCharacters] = useState([]);
     const [comics, setComics] = useState([]);
     const [path, setPath] = useState('');
-    console.log(props);
     const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
+
     useEffect(() => {
+        // Função que carrega os dados da pagina de detalhes do character
         async function characterDetail() {
             const response = await apiMarvel
                 .get(
@@ -34,16 +38,42 @@ function characterDetails(props) {
             if (response === undefined) {
                 setLoadin(false);
             } else {
-                console.log(loadin);
-                console.log(response);
                 setPath(response.data.data.results[0].thumbnail.path);
                 setComics(responseComics.data.data.results);
                 setCharacters(response.data.data.results[0]);
             }
-            console.log(response.data.data.results[0].thumbnail);
         }
         characterDetail();
     }, []);
+
+    async function favorites() {
+        // eslint-disable-next-line camelcase
+        const id_user = localStorage.getItem('user_id');
+        const { id } = character;
+        const { name } = character;
+        const { description } = character;
+        // eslint-disable-next-line no-shadow
+        const { path } = character.thumbnail;
+        const data = {
+            id,
+            name,
+            description,
+            imageURL: path,
+            type_image: 'jpg',
+            id_user,
+        };
+        const response = await api
+            .post('/character/adicionar', data)
+            .catch((error) => {
+                setLoadin(false);
+            });
+        console.log(response);
+        if (response.status !== 200) {
+            toast.warn('Character not add!');
+        } else {
+            toast.success('Successful character addition!');
+        }
+    }
     return (
         <Container>
             <Header>
@@ -53,10 +83,10 @@ function characterDetails(props) {
                 <img src={`${path}.jpg`} alt="marvelComics" />
                 <div>
                     <h1>{character.name}</h1>
-                    <h5>Details: {character.description}</h5>
+                    <h4>Details: {character.description}</h4>
                 </div>
                 <Button>
-                    <button type="button">
+                    <button type="button" onClick={() => favorites()}>
                         <FaRegBookmark />
                     </button>
                 </Button>

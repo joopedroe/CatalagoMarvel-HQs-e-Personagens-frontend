@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
@@ -11,8 +12,6 @@ function login({ history }) {
     const [login, setLogin] = useState(false);
     async function formSubmit(data) {
         setLogin(true);
-        // eslint-disable-next-line no-console
-        console.log(data);
         // eslint-disable-next-line no-unused-vars
         const response = await api.post('/login', data).catch((error) => {
             setLogin(false);
@@ -21,10 +20,13 @@ function login({ history }) {
             toast.error('Invalid username or password!');
         } else {
             const { token } = response.data;
+            const { user } = response.data;
+            localStorage.setItem('user_id', user._id);
             localStorage.setItem('token', token);
             history.push('/main');
         }
     }
+    // schema responsavel pela validação nos campos
     const schema = Yup.object().shape({
         username: Yup.string().required('Required field'),
         password: Yup.string().required('Required field'),
