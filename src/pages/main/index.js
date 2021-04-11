@@ -60,6 +60,9 @@ function Main() {
                             <FaSearch />
                         </button>
                     </Form>
+                    <Link to="/main/favorites">
+                        <button type="button"> Favorites</button>
+                    </Link>
                 </ContentHeader>
             </Header>
             <ul>
