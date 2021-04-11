@@ -7,6 +7,7 @@ import profileUpdate from '../pages/profile';
 import Main from '../pages/main';
 import characterDetails from '../pages/charactersDetails/index';
 import favoritesCharacters from '../pages/charactersFavorite';
+import comics from '../pages/comics';
 
 export default function Routes() {
     return (
@@ -27,6 +28,7 @@ export default function Routes() {
                     isPrivate
                 />
                 <Route path="/profile" component={profileUpdate} isPrivate />
+                <Route path="/comics" component={comics} isPrivate />
             </Switch>
         </BrowserRouter>
     );
