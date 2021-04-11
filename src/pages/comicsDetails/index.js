@@ -21,16 +21,19 @@ function comicDetails(props) {
     const [comic, setComics] = useState([]);
     const [path, setPath] = useState('');
     const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
-        // Função que carrega os dados da pagina de detalhes do character
+        // Função que carrega os dados da pagina de detalhes do comic
         async function comicDetail() {
+            // Chamada na api da marvel que retorna as comics
             const response = await apiMarvel
                 .get(`/comics/${props.match.params.id}?apikey=${keyPrivate}`)
                 // eslint-disable-next-line no-unused-vars
                 .catch((error) => {
                     setLoadin(false);
                 });
+            // Chamada na api da marvel que retorna os charactter relacionados da comic
             const responseCharacter = await apiMarvel
                 .get(
                     `/comics/${props.match.params.id}/characters?apikey=${keyPrivate}`
@@ -43,7 +46,6 @@ function comicDetails(props) {
                 setLoadin(false);
             } else {
                 setLoadin(true);
-                console.log(responseCharacter);
                 setPath(response.data.data.results[0].thumbnail.path);
                 setCharacters(responseCharacter.data.data.results);
                 setComics(response.data.data.results[0]);
@@ -68,8 +70,14 @@ function comicDetails(props) {
             type_image: 'jpg',
             id_user,
         };
+        // Endpoint que adiciona uma comic aos favoritos
         const response = await api
-            .post('/comic/adicionar', data)
+            .post('/comic/adicionar', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${token}`,
+                },
+            })
             // eslint-disable-next-line no-unused-vars
             .catch((error) => {
                 setLoadin(true);
@@ -105,7 +113,7 @@ function comicDetails(props) {
             <ul>
                 {characters.map((character) => (
                     <Item key={character.id}>
-                        <Link to={`/character/details/${character.id}`}>
+                        <Link to={`/details/${character.id}`}>
                             <img
                                 src={`${character.thumbnail.path}.jpg`}
                                 alt="marvelComics"

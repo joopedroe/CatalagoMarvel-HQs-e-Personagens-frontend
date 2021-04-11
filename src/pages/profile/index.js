@@ -8,25 +8,34 @@ import { Container } from './styles';
 
 // Função responsável por alterar dados de um usuario
 function profileUpdate({ history }) {
+    const token = localStorage.getItem('token');
+    const id = localStorage.getItem('user_id');
     async function formSubmit(data) {
         // eslint-disable-next-line no-unused-vars
         const response = await api
-            .post('/novo/usuario', {
-                name: data.name,
-                username: data.username,
-                password: data.password,
-                password2: data.password,
-                email: data.email,
-                isAdmin: false,
-            })
+            .put(
+                '/atualizar/usuario',
+                {
+                    id,
+                    name: data.name,
+                    username: data.username,
+                    password: data.password,
+                    email: data.email,
+                    isAdmin: false,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authorization: `Bearer ${token}`,
+                    },
+                }
+            )
             // eslint-disable-next-line no-unused-vars
             .catch((error) => {
                 // eslint-disable-next-line no-console
-                console.log('teste');
                 toast.warn('Invalid profileUpdate!');
             });
         // eslint-disable-next-line no-console
-        console.log(response);
         if (!response.data.success) {
             toast.warn(response.data.message);
         } else {

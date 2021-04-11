@@ -10,11 +10,17 @@ function favoritesCharacters() {
     const [loadin, setLoadin] = useState(false);
     const [characters, setCharacters] = useState([]);
     const iduser = localStorage.getItem('user_id');
+    const token = localStorage.getItem('token');
     useEffect(() => {
-        // Função responsavel por lista characters favoritos
+        // Função responsavel por listar characters favoritos
         async function listFavorites() {
             const response = await api
-                .get(`/character/favoritos/${iduser}`)
+                .get(`/character/favoritos/${iduser}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authorization: `Bearer ${token}`,
+                    },
+                })
                 // eslint-disable-next-line no-unused-vars
                 .catch((error) => {
                     setLoadin(false);
@@ -29,8 +35,14 @@ function favoritesCharacters() {
         listFavorites();
     }, []);
     async function remove(id) {
+        // chamada api que retira um character da lista de favoritos
         const response = await api
-            .delete(`/character/remove/${id}`)
+            .delete(`/character/remove/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${token}`,
+                },
+            })
             // eslint-disable-next-line no-unused-vars
             .catch((error) => {
                 setLoadin(false);
@@ -38,8 +50,14 @@ function favoritesCharacters() {
         if (response === undefined) {
             setLoadin(false);
         } else {
+            // chamada api que lista character favoritos de um usuário
             const responseCharcter = await api
-                .get(`/character/favoritos/${iduser}`)
+                .get(`/character/favoritos/${iduser}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authorization: `Bearer ${token}`,
+                    },
+                })
                 // eslint-disable-next-line no-unused-vars
                 .catch((error) => {
                     setLoadin(false);

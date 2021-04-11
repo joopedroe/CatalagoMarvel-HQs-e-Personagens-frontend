@@ -9,6 +9,7 @@ import characterDetails from '../pages/charactersDetails/index';
 import favoritesCharacters from '../pages/charactersFavorite';
 import comics from '../pages/comics';
 import comicDetails from '../pages/comicsDetails/index';
+import favoritesComics from '../pages/comicsFavorites/index';
 
 export default function Routes() {
     return (
@@ -33,6 +34,12 @@ export default function Routes() {
                 <Route
                     path="/comic/details/:id"
                     component={comicDetails}
+                    isPrivate
+                />
+                <Route
+                    path="/comics/favorites"
+                    exact
+                    component={favoritesComics}
                     isPrivate
                 />
             </Switch>

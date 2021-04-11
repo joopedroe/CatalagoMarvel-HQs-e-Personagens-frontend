@@ -5,3 +5,10 @@ export const logged = () => {
     }
     return false;
 };
+export const logout = () => {
+    const token = localStorage.removeItem('token');
+    if (token !== null) {
+        return false;
+    }
+    return true;
+};

@@ -4,6 +4,7 @@ import { FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-marvel.png';
 import { Container, Content, Profiler, Div } from './styles';
+import { logout } from '../../services/logged';
 
 function navbar() {
     return (
@@ -35,10 +36,12 @@ function navbar() {
                     </Profiler>
                     <aside>
                         <div>
-                            <button type="button">
-                                {' '}
-                                <FaSignOutAlt /> LOGOUT
-                            </button>
+                            <Link to="/">
+                                <button type="button" onClick={() => logout()}>
+                                    {' '}
+                                    <FaSignOutAlt /> LOGOUT
+                                </button>
+                            </Link>
                         </div>
                     </aside>
                 </div>

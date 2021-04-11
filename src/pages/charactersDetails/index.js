@@ -16,6 +16,7 @@ function characterDetails(props) {
     const [comics, setComics] = useState([]);
     const [path, setPath] = useState('');
     const keyPrivate = 'efce5dc2a5917c0b296bdf709826fb8f';
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         // Função que carrega os dados da pagina de detalhes do character
@@ -64,8 +65,14 @@ function characterDetails(props) {
             type_image: 'jpg',
             id_user,
         };
+        // chamada api que adiciona um character aos favoritos
         const response = await api
-            .post('/character/adicionar', data)
+            .post('/character/adicionar', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${token}`,
+                },
+            })
             .catch((error) => {
                 setLoadin(true);
             });
