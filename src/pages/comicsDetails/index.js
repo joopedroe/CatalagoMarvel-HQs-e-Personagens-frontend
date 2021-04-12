@@ -105,11 +105,13 @@ function comicDetails(props) {
                 </div>
                 <Button>
                     <button type="button" onClick={() => favorites()}>
-                        <FaRegBookmark />
+                        <FaRegBookmark />Add Favorite
                     </button>
                 </Button>
             </ContentHeader>
-
+            <Header>
+                <h1>RELATED CHARACTERS</h1>
+            </Header>
             <ul>
                 {characters.map((character) => (
                     <Item key={character.id}>

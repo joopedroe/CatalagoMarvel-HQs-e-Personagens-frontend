@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 function loadin() {
     return (
+    <Content>
         <Container>
-            <h1>Loadin...</h1>
+            <h1>Loading...</h1>
         </Container>
+    </Content>
     );
 }
 export default loadin;
