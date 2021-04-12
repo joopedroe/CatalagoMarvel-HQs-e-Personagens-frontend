@@ -99,15 +99,17 @@ function characterDetails(props) {
                 </div>
                 <Button>
                     <button type="button" onClick={() => favorites()}>
-                        <FaRegBookmark />
+                        <FaRegBookmark /> Add Favorite
                     </button>
                 </Button>
             </ContentHeader>
-
+            <Header>
+                <h1>RELATED COMICS</h1>
+            </Header>
             <ul>
                 {comics.map((comic) => (
                     <Item key={comic.id}>
-                        <Link to={`/comics/details/${comic.id}`}>
+                        <Link to={`/comic/details/${comic.id}`}>
                             <img
                                 src={`${comic.thumbnail.path}.jpg`}
                                 alt="marvelComics"

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Content = styled.div`
+    height: 500px;
+
+`;
+
 export const Container = styled.div`
     max-width: 80%;
     color: #0059b3;
@@ -10,6 +15,6 @@ export const Container = styled.div`
     height: 100%;
     h1 {
         margin-top: 30px;
-        font-size: 60px;
+        font-size: 50px;
     }
 `;

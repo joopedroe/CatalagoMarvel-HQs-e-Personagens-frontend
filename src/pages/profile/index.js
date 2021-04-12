@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -10,6 +10,23 @@ import { Container } from './styles';
 function profileUpdate({ history }) {
     const token = localStorage.getItem('token');
     const id = localStorage.getItem('user_id');
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        // Função que carrega os dados dos characters
+        async function getPerfil(){
+            const response = await api
+                .get(
+                    `/get/usuario/${id}`,{
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization: `Bearer ${token}`,
+                        },
+                    })
+            setUser(response.data)
+        }
+        getPerfil();
+    }, []);
     async function formSubmit(data) {
         // eslint-disable-next-line no-unused-vars
         const response = await api
@@ -19,7 +36,7 @@ function profileUpdate({ history }) {
                     id,
                     name: data.name,
                     username: data.username,
-                    password: data.password,
+                    password: data.newpassword,
                     email: data.email,
                     isAdmin: false,
                 },
@@ -50,20 +67,20 @@ function profileUpdate({ history }) {
         email: Yup.string()
             .email('Invalid email format')
             .required('Required field'),
-        password: Yup.string().required('Required field'),
+        newpassword: Yup.string().required('Required field'),
         confirmPassword: Yup.string().required('Required field'),
     });
     return (
         <div>
             <Container>
-                <Form schema={schema} onSubmit={formSubmit}>
+                <Form initialData={user} schema={schema} onSubmit={formSubmit}>
                     <Input name="name" type="text" placeholder="Name" />
                     <Input name="username" type="text" placeholder="Username" />
                     <Input name="email" type="email" placeholder="Email" />
                     <Input
-                        name="password"
+                        name="newpassword"
                         type="password"
-                        placeholder="Password"
+                        placeholder="New Password"
                     />
                     <Input
                         name="confirmPassword"

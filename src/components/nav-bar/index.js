@@ -29,7 +29,7 @@ function navbar() {
                             <Link to="/profile">
                                 <button type="button">
                                     {' '}
-                                    <FaUserAlt /> My profile
+                                    <FaUserAlt /> PROFILE
                                 </button>
                             </Link>
                         </div>

@@ -31,7 +31,6 @@ export const Container = styled.div`
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 15px;
-        margin-top: 30px;
         img {
             width: 165px;
             height: 200px;
@@ -41,7 +40,6 @@ export const Container = styled.div`
         display: flex;
         align-self: center;
         align-items: center;
-        padding: 15px;
         > button {
             border: 0;
             background: none;
@@ -73,7 +71,8 @@ export const Item = styled.li`
 `;
 
 export const Header = styled.div`
-    padding: 0 5px;
+    padding: 10px 20px;
+    margin-top:20px;
     H1 {
         color: #e6e6e6;
     }
