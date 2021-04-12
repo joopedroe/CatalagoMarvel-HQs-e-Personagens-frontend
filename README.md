@@ -2,6 +2,9 @@
 
 Aplicação que reune todas as informações sobre as comics e characters da marvel, além de permitir favoritar e desfavoritar;
 
+## API
+Os dados são disponibilizados da API developer da marvel (https://developer.marvel.com/).
+
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
